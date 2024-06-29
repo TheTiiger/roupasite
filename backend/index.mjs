@@ -1,8 +1,7 @@
-const express = require('express');
+import express from 'express';
 import mongoose from 'mongoose';
-const mongoose = require('mongoose');
 const app = express();
-const cors = require('cors');
+import cors from 'cors';
 const PORT = 5000;
 app.use(cors());
 
