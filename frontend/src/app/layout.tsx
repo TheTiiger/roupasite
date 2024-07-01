@@ -32,12 +32,20 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <li><a className="passarporcima" onClick={toggleSidebar}> + Contato</a></li>
             </ul>
           </nav>
+        </header>
+        <header className="site-header">
           <div className="logo">
             <a href="#">Guci</a>
           </div>
           <nav className="main-nav">
             <ul className="nav-links">
               <li><a href="#">Home</a></li>
+              </ul>
+          </nav>
+        </header>
+        <header className="site-header">
+          <nav className="main-nav">
+            <ul className="nav-links">
               <li><a onClick={toggleSidebar2}>Menu</a></li>
             </ul>
           </nav>
