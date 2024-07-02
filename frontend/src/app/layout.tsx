@@ -1,10 +1,6 @@
 'use client';
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+
 import "../app/CSS/Homepage.css";
-
-
-
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 
@@ -17,6 +13,28 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
   const toggleSidebar2 = () => setIsSidebarOpen2(!isSidebarOpen2);
 
+  useEffect(() => {
+    const handleScroll = () => {
+        const initialLogo = document.querySelector('.initial-logo') as HTMLElement;
+        const maxScrollValue = 200; // Adjust as necessary
+
+        if (initialLogo) {
+            if (window.scrollY > 50) {
+                initialLogo.style.opacity = '0';
+                initialLogo.style.fontSize = '2em'; // Adjust the size you want when scrolled
+            } else {
+                initialLogo.style.opacity = '1';
+                initialLogo.style.fontSize = '5em'; // Original size
+            }
+        }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+        window.removeEventListener('scroll', handleScroll);
+    };
+}, []);
+
 
   return (
     <html>
@@ -27,30 +45,31 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <link rel="stylesheet" href="styles.css" />
       </head>
       <body>
-        <header className="site-header">
-          <nav className="main-nav">
-            <ul className="nav-links">
-              <li><a className="passarporcima" onClick={toggleSidebar}> + Contato</a></li>
-            </ul>
-          </nav>
-        </header>
-        <header className="site-header">
-          <div className="logo">
-            <a href="#">Guci</a>
-          </div>
-          <nav className="main-nav">
-            <ul className="nav-links">
-              <li><a href="#">Home</a></li>
+      <div className="initial-logo centered-logo">
+          <h1>Guci</h1>
+        </div>
+        <div className="container">
+          <header className="site-header1">
+            <nav className="main-nav">
+              <ul className="nav-links">
+                <li><a className="passarporcima" onClick={toggleSidebar}> + Contato</a></li>
               </ul>
-          </nav>
-        </header>
-        <header className="site-header">
-          <nav className="main-nav">
-            <ul className="nav-links">
-              <li><a onClick={toggleSidebar2}>Menu</a></li>
-            </ul>
-          </nav>
-        </header>
+            </nav>
+          </header>
+          <header className="site-header2">
+            <div className="logo">
+              <a href="#">Guci</a>
+            </div>
+          </header>
+          <header className="site-header3">
+            <nav className="main-nav">
+              <ul className="nav-links">
+                <li><a href="/home">Home</a></li>
+                <li><a className="menu" onClick={toggleSidebar2}>Menu</a></li>
+              </ul>
+            </nav>
+          </header>
+        </div>
         {isSidebarOpen2 && (
           <div className="sidebar2">
             <ul>

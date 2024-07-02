@@ -4,8 +4,21 @@
     box-sizing: border-box;
 }
 
-body {
-    font-family: Arial, sans-serif;
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+.centered-logo {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 5em;
+    opacity: 1;
+    transition: all 0.3s ease; /* Adjust the duration as needed */
 }
 
 .passarporcima {
@@ -24,26 +37,50 @@ body {
 
 }
 
-
-.site-header {
+.container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    padding: 10px 30px;
-    background-color: #373b368d;
-    border-radius: 40px;
-    margin-left: 20%;
-    margin-right: 20%;
-
+   
+    height: 80px;
 }
 
-.logo a {
-    text-decoration: solid;
-    color: rgb(255, 255, 255);
+.site-header1, .site-header2, .site-header3 {
+    padding: 10px 30px;
+    border-radius: 40px;
+    margin: 0 20px;
+    background: linear-gradient(145deg, #3a3a3a, #1c1c1c, #4d4d4d);
+    box-shadow: 4px 4px 8px #000000, -4px -4px 8px #5a5a5a;
+    border: 1px solid #5a5a5a;
+    color: #ffffff;
+    text-shadow: 1px 1px 2px #000000;
+}
+
+.site-header2 {
+    flex-grow: 1;
+    padding: 15px;
+    text-align: center;
+}
+
+.site-header2 .logo a {
+    font-family: "Apple Chancery", cursive;
     font-size: 2em;
     font-weight: bold;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    text-shadow: 1px 1px 2px #000000;
 }
 
+.menu{
+    padding-left: 10px;
+}
+.logo a {
+    text-decoration: none; 
+    color: rgb(255, 255, 255);
+    font-size: 2em;
+    font-weight: lighter;
+    font-family: "Apple Chancery", cursive;
+}
 .main-nav {
     display: flex;
     align-items: center;
@@ -54,33 +91,16 @@ body {
     display: flex;
 }
 
-.nav-links li {
-    margin-left: 20px;
-}
 
 .nav-links a {
     text-decoration: none;
     color: rgb(255, 255, 255);
-    font-size: 1em;
-    transition: color 0.3s;
+    font-size: 16px;
+
 }
 
 .nav-links a:hover {
-    color: #ddd;
-}
-
-.hamburger {
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
-}
-
-.bar {
-    width: 25px;
-    height: 3px;
-    background-color: white;
-    margin: 3px 0;
-    transition: 0.3s;
+    color: #a75151;
 }
 
 .sidebar {
