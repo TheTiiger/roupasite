@@ -1,24 +1,11 @@
-'use client';
+async function Page() {
 
-import React, { useEffect, useState } from "react";
-
-
-function Page() {
-
-  const [message, setMessage] = useState("Loading...");
-
-  useEffect(() => {
-    fetch("http://localhost:5000/api/home")
-      .then(response => response.json())
-      .then(data => {
-        console.log(data);
-        setMessage(data.message);
-      });
-  }, []);
-
+  
+    const message = await (await fetch("http://localhost:5000/api/home")).json();
+ 
   return (
     <div>
-      <h1>{message}</h1>
+      <h1>{message.message}</h1>
     </div>
   );
 }

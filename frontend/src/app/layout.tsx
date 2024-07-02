@@ -6,6 +6,7 @@ import "../app/CSS/Homepage.css";
 
 
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   // Estado para controlar a visibilidade da sidebar
@@ -53,7 +54,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         {isSidebarOpen2 && (
           <div className="sidebar2">
             <ul>
-              <li><a className="MenuBotoes" href="/Calcado">Caçado</a></li>
+              <li><Link className="MenuBotoes" href="/tiposderoupa/calcado">Caçado</Link></li>
               <li><a className="MenuBotoes" href="/shirts">T-Shirts</a></li>
               <li><a className="MenuBotoes" href="/relogios">Relogios</a></li>
               <li><a className="MenuBotoes" href="/all">all</a></li>

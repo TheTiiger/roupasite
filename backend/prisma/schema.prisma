@@ -1,0 +1,21 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model artigos {
+  id String @id @unique
+  name String
+  tipoartigoid String
+  tipoartigos tipoartigos @relation(fields: [tipoartigoid], references: [id])
+}
+
+model tipoartigos {
+  id String @id @unique
+  name String
+  artigos artigos[]
+}
