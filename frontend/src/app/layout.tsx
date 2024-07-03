@@ -13,27 +13,23 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
   const toggleSidebar2 = () => setIsSidebarOpen2(!isSidebarOpen2);
 
-  useEffect(() => {
-    const handleScroll = () => {
-        const initialLogo = document.querySelector('.initial-logo') as HTMLElement;
-        const maxScrollValue = 200; // Adjust as necessary
-
-        if (initialLogo) {
-            if (window.scrollY > 50) {
-                initialLogo.style.opacity = '0';
-                initialLogo.style.fontSize = '2em'; // Adjust the size you want when scrolled
-            } else {
-                initialLogo.style.opacity = '1';
-                initialLogo.style.fontSize = '5em'; // Original size
-            }
-        }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-        window.removeEventListener('scroll', handleScroll);
-    };
-}, []);
+  document.addEventListener('DOMContentLoaded', function() {
+    const header = document.querySelector('.site-header');
+    const initialLogo = document.querySelector('.initial-logo');
+    const mainNav = document.querySelector('.main-nav');
+  
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+        initialLogo.classList.add('hidden');
+        mainNav.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+        initialLogo.classList.remove('hidden');
+        mainNav.classList.remove('scrolled');
+      }
+    });
+  });
 
 
   return (
