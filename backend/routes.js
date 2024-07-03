@@ -1,8 +1,22 @@
 import express from "express";
-import { getProducts } from "./controllers/products";
+import { getProducts, getProductsTypes } from "./controllers/products";
+import { createProduct } from "./controllers/products";
+import { updateProduct } from "./controllers/products";
+import { deleteProduct } from "./controllers/products";
 const router = express.Router();
 
-router.get("/products/:tipo", getProducts);
+//Buscar coisas get
+router.get("/products", getProducts);
+router.get("/products/:tipo", getProductsTypes);
+router.get("/deleteproducts/:id", deleteProduct);
+
+//Criar coisas post
+router.post("/createproducts", createProduct);
+
+//Atualizar coisas put
+router.put("/updateproducts/:id", updateProduct);
+
+
 
 
 export default router;
