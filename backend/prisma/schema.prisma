@@ -10,6 +10,9 @@ datasource db {
 model artigos {
   id String @id @unique
   name String
+  descricao String
+  preco Float
+  imagem String
   tipoartigoid String
   tipoartigos tipoartigos @relation(fields: [tipoartigoid], references: [id])
 }

@@ -1,12 +1,20 @@
+import React, { useEffect, useState } from 'react';
+import "../Components/CSS/Page.css";
+
 async function Page() {
 
-  
-    //const message = await (await fetch("http://localhost:5000/api/home")).json();
- 
+  //const products = await (await fetch("http://localhost:5000/products")).json();
+
   return (
-    <div>
-      <h1>h1</h1>
-    </div>
+<div className="typing-indicator">
+    <div className="typing-circle"></div>
+    <div className="typing-circle"></div>
+    <div className="typing-circle"></div>
+    <div className="typing-shadow"></div>
+    <div className="typing-shadow"></div>
+    <div className="typing-shadow"></div>
+    <a href="#" className="btn-shine">Versão Beta</a>
+</div>
   );
 }
 

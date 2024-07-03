@@ -1,0 +1,350 @@
+.top-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-bottom: -11px;
+  }
+  
+  .user-icon-logo {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    position: fixed;
+    top: 38px;
+    right: 20px;
+    padding: 5px;
+    border: none;
+    border-radius: 24px;
+    cursor: pointer;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  .site-header {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+    width: 100%;
+  }
+  
+  .main-nav {
+    margin-bottom: 10px;
+  }
+  
+  .main-nav .right-nav {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+  }
+  
+  .nav-links li {
+    display: flex;
+    align-items: center;
+  }
+  
+  .nav-links a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  .hover-effect:hover {
+    text-decoration: underline;
+  }
+  
+  .logo {
+    display: flex;
+  }
+  
+  .gucci-logo {
+    max-height: 80px;
+    width: auto;
+  }
+  
+  .search-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    width: 100%;
+  }
+  
+  .search-label {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    position: relative;
+    border: 2px solid transparent;
+    border-radius: 40px;
+    overflow: hidden;
+    background-color: #0A6A56;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    padding: 9px;
+    cursor: text;
+    height: 40px;
+    width: 30%;
+    margin-bottom: -40px;
+  }
+  
+  .search-label:hover {
+    border-color: gray;
+  }
+  
+  .search-label:focus-within {
+    background: #0A6A56;
+    border-color: gray;
+  }
+  
+  .search-label input {
+    outline: none;
+    width: 100%;
+    border: none;
+    background: none;
+    color: #fff;
+  }
+
+
+  ::placeholder{
+    color: #fff;
+  }
+  
+  .search-label input:focus+.slash-icon,
+  .search-label input:valid+.slash-icon {
+    display: none;
+  }
+  
+  .search-label input:valid~.search-icon {
+    display: block;
+  }
+  
+  .search-label input:valid {
+    width: calc(100% - 22px);
+    transform: translateX(20px);
+  }
+  
+  .search-label svg,
+  .slash-icon {
+    position: absolute;
+    color: #7e7e7e;
+  }
+  
+  .search-icon {
+    display: none;
+    width: 12px;
+    height: auto;
+  }
+  
+  .slash-icon {
+    right: 7px;
+    border: 1px solid #393838;
+    background: linear-gradient(-225deg, #343434, #6d6d6d);
+    border-radius: 3px;
+    text-align: center;
+    box-shadow: inset 0 -2px 0 0 #3f3f3f, inset 0 0 1px 1px rgb(94, 93, 93), 0 1px 2px 1px rgba(28, 28, 29, 0.4);
+    cursor: pointer;
+    font-size: 12px;
+    width: 15px;
+  }
+  
+  .slash-icon:active {
+    box-shadow: inset 0 1px 0 0 #3f3f3f, inset 0 0 1px 1px rgb(94, 93, 93), 0 1px 2px 0 rgba(28, 28, 29, 0.4);
+    text-shadow: 0 1px 0 #7e7e7e;
+    color: transparent;
+  }
+  
+  .sidebar {
+    padding: 20px;
+    position: fixed;
+    border-radius: 10px;
+    background: #333;
+  }
+  
+  .sidebar2 {
+    position: fixed;
+    width: 300px;
+    height: 400px;
+    border-radius: 30px;
+    background: #212121;
+    box-shadow: 15px 15px 30px rgb(25, 25, 25), -15px -15px 30px rgb(60, 60, 60);
+    margin-left: 83%;
+  }
+  
+  ul {
+    list-style: none;
+  }
+  
+  .example-2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+  }
+  
+  .example-2 .icon-content {
+    margin: 0 10px;
+    position: relative;
+  }
+  
+  .example-2 .icon-content .tooltip {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(50%);
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 15px;
+    opacity: 0;
+    visibility: hidden;
+    font-size: 14px;
+    transition: all 0.3s ease;
+  }
+  
+  .example-2 .icon-content:hover .tooltip {
+    opacity: 1;
+    visibility: visible;
+    top: 6px;
+  }
+  
+  .example-2 .icon-content a {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 20%;
+    color: #4d4d4d;
+    background-color: #ffff;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .example-2 .icon-content a:hover {
+    box-shadow: 3px 2px 45px 0px rgb(0 0 0 / 50%);
+  }
+  
+  .example-2 .icon-content a svg {
+    position: relative;
+    z-index: 1;
+    width: 30px;
+    height: 30px;
+  }
+  
+  .example-2 .icon-content a:hover {
+    color: white;
+  }
+  
+  .example-2 .icon-content a .filled {
+    position: absolute;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background-color: #000;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .example-2 .icon-content a:hover .filled {
+    height: 100%;
+  }
+  
+  .example-2 .icon-content a[data-social="spotify"] .filled,
+  .example-2 .icon-content a[data-social="spotify"]~.tooltip {
+    background-color: #1db954;
+  }
+  
+  .example-2 .icon-content a[data-social="pinterest"] .filled,
+  .example-2 .icon-content a[data-social="pinterest"]~.tooltip {
+    background-color: #bd081c;
+  }
+  
+  .example-2 .icon-content a[data-social="dribbble"] .filled,
+  .example-2 .icon-content a[data-social="dribbble"]~.tooltip {
+    background-color: #ea4c89;
+  }
+  
+  .example-2 .icon-content a[data-social="telegram"] .filled,
+  .example-2 .icon-content a[data-social="telegram"]~.tooltip {
+    background-color: #0088cc;
+  }
+  
+  .MenuBotoes {
+    padding: 5px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: #fff;
+    margin-left: 10px;
+    margin-top: 10px;
+  }
+  
+  .MenuBotoes {
+    --primary-color: #111;
+    --hovered-color: #c84747;
+    position: relative;
+    display: flex;
+    font-weight: 600;
+    font-size: 20px;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  
+  .MenuBotoes p {
+    margin: 0;
+    position: relative;
+    font-size: 20px;
+    color: var(--primary-color);
+  }
+  
+  .MenuBotoes::after {
+    position: absolute;
+    content: "";
+    width: 0;
+    left: 0;
+    bottom: -7px;
+    background: var(--hovered-color);
+    height: 2px;
+    transition: 0.3s ease-out;
+  }
+  
+  .MenuBotoes p::before {
+    position: absolute;
+    content: "Subscribe";
+    width: 0%;
+    inset: 0;
+    color: var(--hovered-color);
+    overflow: hidden;
+    transition: 0.3s ease-out;
+  }
+  
+  .MenuBotoes:hover::after {
+    width: 100%;
+  }
+  
+  .MenuBotoes:hover p::before {
+    width: 100%;
+  }
+  
+  .MenuBotoes:hover svg {
+    transform: translateX(4px);
+    color: var(--hovered-color);
+  }
+  
+  .MenuBotoes svg {
+    color: var(--primary-color);
+    transition: 0.2s;
+    position: relative;
+    width: 15px;
+    transition-delay: 0.2s;
+  }
+  
