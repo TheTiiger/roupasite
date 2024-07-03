@@ -3,6 +3,8 @@
 import "../app/CSS/Homepage.css";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import GucciLogo from "../images/gucci-logo.png";
+import Image from "next/image";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   // Estado para controlar a visibilidade da sidebar
@@ -13,23 +15,27 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
   const toggleSidebar2 = () => setIsSidebarOpen2(!isSidebarOpen2);
 
-  document.addEventListener('DOMContentLoaded', function() {
-    const header = document.querySelector('.site-header');
-    const initialLogo = document.querySelector('.initial-logo');
-    const mainNav = document.querySelector('.main-nav');
-  
-    window.addEventListener('scroll', function() {
-      if (window.scrollY > 50) {
-        header.classList.add('scrolled');
-        initialLogo.classList.add('hidden');
-        mainNav.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
-        initialLogo.classList.remove('hidden');
-        mainNav.classList.remove('scrolled');
+  useEffect(() => {
+    const handleScroll = () => {
+      const initialLogo = document.querySelector('.initial-logo') as HTMLElement;
+      const maxScrollValue = 200; // Adjust as necessary
+
+      if (initialLogo) {
+        if (window.scrollY > 50) {
+          initialLogo.style.opacity = '0';
+          initialLogo.style.fontSize = '2em'; // Adjust the size you want when scrolled
+        } else {
+          initialLogo.style.opacity = '1';
+          initialLogo.style.fontSize = '5em'; // Original size
+        }
       }
-    });
-  });
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
 
   return (
@@ -37,31 +43,30 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Guci</title>
+        <title>Gucci</title>
         <link rel="stylesheet" href="styles.css" />
       </head>
       <body>
-      <div className="initial-logo centered-logo">
-          <h1>Guci</h1>
-        </div>
         <div className="container">
-          <header className="site-header1">
-            <nav className="main-nav">
+          <header className="site-header">
+            <nav className="main-nav left-nav">
               <ul className="nav-links">
-                <li><a className="passarporcima" onClick={toggleSidebar}> + Contato</a></li>
+                <li>
+                  <a className="hover-effect" onClick={toggleSidebar}>Contato</a>
+                </li>
               </ul>
             </nav>
-          </header>
-          <header className="site-header2">
             <div className="logo">
-              <a href="#">Guci</a>
+              <Image src={GucciLogo} alt="Gucci Logo" className="gucci-logo" />
             </div>
-          </header>
-          <header className="site-header3">
-            <nav className="main-nav">
+            <nav className="main-nav right-nav">
               <ul className="nav-links">
-                <li><a href="/home">Home</a></li>
-                <li><a className="menu" onClick={toggleSidebar2}>Menu</a></li>
+                <li>
+                  <a href="/home">Home</a>
+                </li>
+                <li>
+                  <a className="menu-toggle" onClick={toggleSidebar2}>Menu</a>
+                </li>
               </ul>
             </nav>
           </header>
