@@ -2,6 +2,9 @@
 CREATE TABLE `artigos` (
     `id` VARCHAR(191) NOT NULL,
     `name` VARCHAR(191) NOT NULL,
+    `descricao` VARCHAR(191) NOT NULL,
+    `preco` DOUBLE NOT NULL,
+    `imagem` VARCHAR(191) NOT NULL,
     `tipoartigoid` VARCHAR(191) NOT NULL,
 
     UNIQUE INDEX `artigos_id_key`(`id`),

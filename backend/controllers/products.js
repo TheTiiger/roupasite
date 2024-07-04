@@ -6,6 +6,9 @@ export async function getProducts(req, res) {
         select: {
             name: true,
             id: true,
+            descricao: true,
+            preco: true,
+            imagem: true,
             tipoartigos: true
         }
     });
@@ -17,6 +20,9 @@ export async function getProductsTypes(req, res) {
         select: {
             name: true,
             id: true,
+            descricao: true,
+            preco: true,
+            imagem: true,
             tipoartigos: true
         },
         where: {
