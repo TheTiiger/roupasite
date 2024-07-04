@@ -1,6 +1,16 @@
 import {PrismaClient} from '@prisma/client';
 const prisma = new PrismaClient();
 
+export async function getProduct(req, res) {
+    const {id} = req.params;
+    const product = await prisma.artigos.findUnique({
+        where: {
+            id
+        }
+    });
+    res.status(200).json(product);
+}
+
 export async function getProducts(req, res) {
     const products = await prisma.artigos.findMany({
         select: {
