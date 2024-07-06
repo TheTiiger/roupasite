@@ -12,7 +12,7 @@ interface Product {
 }
 
 export default async function ProductPage(props) {
-  const res = await fetch(`http://localhost:5000/product/${props.params.id}`, {
+  const res = await fetch(`http://localhost:5000/product/${props.params.id}`,{
     cache: "no-cache"
   });
   const product = await res.json();
@@ -41,7 +41,6 @@ export default async function ProductPage(props) {
           <div className='product-info-descricao'>
             <p>{product.descricao}</p>
           </div>
-
           <Link href="/">
             <p className="back-button">Adicionar Carrinho</p>
           </Link>
