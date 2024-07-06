@@ -3,19 +3,45 @@ import { IMAGES_SERVER } from '@/env';
 import React from 'react';
 import "@/Components/CSS/Paginacompra.css";
 
-interface Product {
-  name: string;
-  id: string;
-  descricao: string;
-  preco: number;
-  imagem: string;
+interface Erro {
+  message: string;
 }
 
-export default async function ProductPage(props) {
-  const res = await fetch(`http://localhost:5000/product/${props.params.id}`,{
+interface Product {
+  name: string
+  id: string
+  descricao: string
+  preco: number
+  imagem: string
+  stock: Stock[]
+  tipoartigos: Tipoartigos
+}
+
+interface Stock {
+  isAvailable: boolean;
+  name: string;
+}
+
+interface Tipoartigos {
+  id: string
+  name: string
+}
+
+export default async function ProductPage(props: any) {
+  const res = await fetch(`http://localhost:5000/product/${props.params.id}`, {
     cache: "no-cache"
   });
-  const product = await res.json();
+
+  const product: Product | Erro = await res.json();
+
+  if ('message' in product) {
+    return (
+      <div className="main-container">
+        <p>{product.message}</p>
+      </div>
+    );
+  }
+
 
   return (
     <div className="main-container">
@@ -31,12 +57,11 @@ export default async function ProductPage(props) {
             <p>{product.preco}$</p>
           </div>
           <div className='product-size'>
-            <p>Escolha o tamanho</p>
-            <select name="size" id="size">
-              <option value="small">S</option>
-              <option value="medium">M</option>
-              <option value="large"></option>
-            </select>
+            {product.stock.map((size) => (
+              <div className='product-uni'>
+                <button disabled={!size.isAvailable} className={!size.isAvailable ? "block" : ""}>{size.name}</button>
+              </div>
+            ))}
           </div>
           <div className='product-info-descricao'>
             <p>{product.descricao}</p>

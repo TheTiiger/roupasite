@@ -15,12 +15,28 @@ model artigos {
   imagem String
   tipoartigoid String
   tipoartigos tipoartigos @relation(fields: [tipoartigoid], references: [id])
+  stock stock[]
 }
 
 model tipoartigos {
   id String @id @unique
   name String
   artigos artigos[]
+}
+
+model stock{
+  id String @id @unique
+  artigoid String
+  artigos artigos @relation(fields: [artigoid], references: [id])
+  sizeid String
+  sizes sizes @relation(fields: [sizeid], references: [id])
+}
+
+model sizes{
+  id String @id @unique
+  size String
+  order Int 
+  stock stock[]
 }
 
 

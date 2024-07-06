@@ -3,12 +3,80 @@ const prisma = new PrismaClient();
 
 export async function getProduct(req, res) {
     const {id} = req.params;
+
+    const allSizes = await prisma.sizes.findMany();
+
     const product = await prisma.artigos.findUnique({
         where: {
             id
+        },
+        select: {
+            name: true,
+            id: true,
+            descricao: true,
+            preco: true,
+            imagem: true,
+            stock: {
+                select: {
+                    sizes: true
+                }
+            },
+            tipoartigos: true
         }
     });
-    res.status(200).json(product);
+
+    if(!product){
+        return res.status(404).json({
+            "message": "Product not found!"
+        });
+    }
+
+    const uniqueSizes = [];
+    const seenSizes = new Set();
+    
+    const sizes = product.stock.filter(stock => {
+        const size = stock.sizes.size;
+        if (!seenSizes.has(size)) {
+            seenSizes.add(size);
+            uniqueSizes.push(stock);
+            return true;
+        }
+        return false;
+    });
+
+    const allClicableSizes = [];
+
+    sizes.forEach((size) => {
+        allClicableSizes.push({
+            name: size.sizes.size,
+            isAvailable: true,
+            order: size.sizes.order
+        });
+    })
+
+    allSizes.forEach((dbSize) => {
+        if(allClicableSizes.findIndex((clSz) => { return clSz.name === dbSize.size }) == -1){
+            allClicableSizes.push({
+                name: dbSize.size,
+                isAvailable: false,
+                order: dbSize.order
+            });
+        }
+    });
+    
+    const sizesOrderd = allClicableSizes.sort((stockOrderBf, stockOrderAf) => { return stockOrderBf.order - stockOrderAf.order });
+
+    const returnOnlyNeeded = sizesOrderd.map((goodSize) => {
+        return {
+            isAvailable: goodSize.isAvailable,
+            name: goodSize.name
+        };
+    })
+
+    res.status(200).json({
+        ...product,
+        stock: returnOnlyNeeded
+    });
 }
 
 export async function getProducts(req, res) {
