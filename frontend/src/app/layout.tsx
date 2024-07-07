@@ -1,11 +1,11 @@
 import "../globals.css";
 
 import { GiHamburgerMenu } from "react-icons/gi";
-import { IoBag } from "react-icons/io5";
 import Link from 'next/link';
 import Logo from "../Components/Logo";
-import HeaderLoginHandler from "../Components/HeaderLoginHandler";
+import HeaderActionsHandler from "../Components/HeaderActionsHandler";
 import { ReactNode } from "react";
+import Cart from "../Components/Cart";
 
 interface LayoutProps {
   children: ReactNode;
@@ -15,6 +15,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <html>
       <body>
+        <Cart />
         <div>
           <div className="sticky top-0 bg-white w-full shadow-lg">
             <div className="w-full bg-red-800 flex justify-center p-1">
@@ -28,12 +29,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 <Logo />
               </Link>
               <div className="flex space-x-4">
-                <HeaderLoginHandler />
-                <Link href='/shopingcart'>
-                  <div>
-                    <IoBag size={30} className="text-red-800" />
-                  </div>
-                </Link>
+                <HeaderActionsHandler />
               </div>
             </div>
           </div>

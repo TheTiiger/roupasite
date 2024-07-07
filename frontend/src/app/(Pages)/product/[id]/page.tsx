@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { IMAGES_SERVER } from '@/env';
 import React from 'react';
-import "@/Components/CSS/Paginacompra.css";
+import ProductDescription from '@/components/ProductDescription';
 
 interface Erro {
   message: string;
@@ -36,7 +36,7 @@ export default async function ProductPage(props: any) {
 
   if ('message' in product) {
     return (
-      <div className="main-container">
+      <div className="">
         <p>{product.message}</p>
       </div>
     );
@@ -44,32 +44,28 @@ export default async function ProductPage(props: any) {
 
 
   return (
-    <div className="main-container">
-      <div className="product-details">
-        <div className="product-info-img">
-          <img className="product-image" src={IMAGES_SERVER + product.imagem} alt={product.name} />
-        </div>
-        <div className='product-info'>
-          <div className='product-info-name'>
-            <h1 className="product-name">{product.name}</h1>
+    <div className="flex justify-center mt-8">
+      <div className="flex w-11/12 shadow">
+          <div className="w-96 h-96">
+            <img className="object-cover h-full w-full rounded-l" src={IMAGES_SERVER + product.imagem} alt={product.name} />
           </div>
-          <div className='product-info-preco'>
-            <p>{product.preco}$</p>
+          <div className="p-4">
+            <h1 className="font-bold text-xl">{product.name}</h1>
+            <div className="p-2 bg-red-800 w-fit rounded text-white font-bold mt-2">
+              <p>{new Intl.NumberFormat("pt-PT", {
+                  style: "currency",
+                  currency: 'EUR'
+                }).format(product.preco)}</p>
+            </div>
+            <div className='flex mt-4 gap-2'>
+              {product.stock.map((size) => (
+                  <button disabled={!size.isAvailable} className={`p-2 w-10 flex justify-center rounded text-white ${!size.isAvailable ? "bg-zinc-300 hover:cursor-not-allowed" : "bg-red-500 hover:cursor-pointer hover:bg-red-600" }`}>{size.name}</button>
+              ))}
+            </div>
+            <div className="mt-4">
+              <ProductDescription description={product.descricao} />
+            </div>
           </div>
-          <div className='product-size'>
-            {product.stock.map((size) => (
-              <div className='product-uni'>
-                <button disabled={!size.isAvailable} className={!size.isAvailable ? "block" : "normalBtn"}>{size.name}</button>
-              </div>
-            ))}
-          </div>
-          <div className='product-info-descricao'>
-            <p>{product.descricao}</p>
-          </div>
-          <Link href="/">
-            <p className="back-button">Adicionar Carrinho</p>
-          </Link>
-        </div>
       </div>
     </div>
   );

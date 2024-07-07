@@ -19,7 +19,7 @@ async function Page() {
   })).json();
 
   return (
-    <div>
+    <div className="bg-gray-100 min-h-screen">
       <Banner />
       {products.length === 0 ? (
         <div className="typing-indicator">
@@ -33,19 +33,22 @@ async function Page() {
         </div>
       ) : (
         <div className='w-full mt-28 flex justify-center'>
-        <div className="w-1/2 flex flex-col">
-          <h2 className="font-bold text-2xl ">Make Your Own Rules</h2>
-          <div className="grid grid-cols-3 gap-4 mt-8">
+        <div className="w-4/5 flex flex-col">
+          <h2 className="font-bold text-2xl mb-8">Make Your Own Rules</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
             {products.map((product: Product) => (
-              <Link href={`/product/${product.id}`}>
-                  <div key={product.id} className="flex flex-col w-full border shadow rounded-t">
-                    <div className='w-full h-36 flex'>
-                      <img src={IMAGES_SERVER + product.imagem} alt={product.name} className='object-cover rounded-t w-full' />
-                    </div>
+                <Link href={`/product/${product.id}`} key={product.id} className="w-full">
+                <div className="w-56 flex flex-col bg-white border shadow-md hover:shadow-lg transition-shadow duration-300">
+                  <div className='h-52'>
+                    <img src={IMAGES_SERVER + product.imagem} alt={product.name} className='object-cover w-full h-full' />
+                  </div>
                     <div className='p-2'>
-                      <h3 className="font-bold">{product.name}</h3>
-                      <p>{product.preco} €</p>
-                    </div>
+                      <h3 className="font-bold uppercase">{product.name}</h3>
+                      <p className="tracking-wider font-price">{new Intl.NumberFormat("pt-PT", {
+                        style: "currency",
+                        currency: 'EUR'
+                      }).format(product.preco)}</p>
+                      </div>
                   </div>
               </Link>
             ))}
