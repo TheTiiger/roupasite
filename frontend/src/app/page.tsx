@@ -35,16 +35,16 @@ async function Page() {
         <div className='w-full mt-28 flex justify-center'>
         <div className="w-1/2 flex flex-col">
           <h2 className="font-bold text-2xl ">Make Your Own Rules</h2>
-          <div className="grid grid-cols-4 gap-4 mt-8">
+          <div className="grid grid-cols-3 gap-4 mt-8">
             {products.map((product: Product) => (
               <Link href={`/product/${product.id}`}>
-                  <div key={product.id} className="flex flex-col w-full border shadow rounded">
+                  <div key={product.id} className="flex flex-col w-full border shadow rounded-t">
                     <div className='w-full h-36 flex'>
-                      <img src={IMAGES_SERVER + product.imagem} alt={product.name} className='object-cover' />
+                      <img src={IMAGES_SERVER + product.imagem} alt={product.name} className='object-cover rounded-t w-full' />
                     </div>
                     <div className='p-2'>
-                      <h3 className="">{product.name}</h3>
-                      <p>{product.preco}$</p>
+                      <h3 className="font-bold">{product.name}</h3>
+                      <p>{product.preco} €</p>
                     </div>
                   </div>
               </Link>
