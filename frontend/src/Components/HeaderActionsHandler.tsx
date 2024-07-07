@@ -4,18 +4,19 @@ import { FaTimes } from 'react-icons/fa';
 import { FaCircleUser } from 'react-icons/fa6';
 import { IoBag } from "react-icons/io5";
 import Link from 'next/link';
+import { useCart } from "@/Contexts/Cart";
 import { useState } from 'react';
 
 const HeaderLoginHandler = () => {
+    const { setShowCart } = useCart();
     const [loginOptions, setLoginOptions] = useState(false);
-    const [cartView, setCartView] = useState(false);
 
     const handleLoginMenuShow = () => {
         setLoginOptions(!loginOptions);
     };
 
     const handleCartSideView = () => {
-        setCartView(!cartView);
+        setShowCart(true);
     };
 
     return (

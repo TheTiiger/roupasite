@@ -1,16 +1,20 @@
 'use client';
 import { FaTrashAlt } from "react-icons/fa";
 import { MdOutlineShoppingCart } from "react-icons/md";
+import { useCart } from "@/Contexts/Cart";
 import Link  from "next/link";
 
 export default function Cart(){
 
+    const { showCart, setShowCart } = useCart();
+
     function onClose(){
-        // Add functionality to close the cart
+        setShowCart(false);
     }
 
     return (
-        <div className="fixed bg-black bg-opacity-30 top-0 left-0 w-full h-full z-10 flex justify-end">
+        <>
+        { showCart ? <div className="fixed bg-black bg-opacity-30 top-0 left-0 w-full h-full z-10 flex justify-end">
             <div className="flex bg-white w-96 h-full p-4 shadow flex flex-col"> 
                 <div className="flex justify-between">
                     <h1 className="text-xl font-bold text-zinc-800 uppercase">O Meu Carrinho</h1>
@@ -28,15 +32,15 @@ export default function Cart(){
                                 <p className="text-zinc-500">€ 21,40</p>
                                 <p className="text-zinc-500">Size: L</p>
                                 <div className="flex items-center mt-2 space-x-2">
-                                    <div className="flex border border-zinc-700 rounded w-fit">
+                                    <div className="flex border border-zinc-700 rounded w-fit bg-black">
                                         <div className="flex w-8 h-8 flex items-center justify-center">
-                                            <p className="text-lg">-</p>
+                                            <p className="text-lg text-white">-</p>
                                         </div>
                                         <div className="flex w-8 h-8 flex items-center justify-center">
-                                            <p className="text-lg">21</p>    
+                                            <p className="text-lg text-white">21</p>    
                                         </div>
                                         <div className="flex w-8 h-8 flex items-center justify-center">
-                                            <p className="text-lg">+</p>
+                                            <p className="text-lg text-white">+</p>
                                         </div>
                                     </div>
                                     <FaTrashAlt size={20} className="text-zinc-800" />
@@ -264,10 +268,11 @@ export default function Cart(){
                 <Link href="/Buy">
                     <button className="flex p-2 w-full mt-4 bg-red-700 text-white space-x-2 items-center justify-center rounded hover:bg-red-800">
                         <MdOutlineShoppingCart size={22} />
-                        <p>Finalizar Carrinho</p>
+                        <p className="font-bold">Finalizar Carrinho</p>
                     </button>
                 </Link>
             </div>
-        </div>
+        </div> : null }
+        </>
     );
 }

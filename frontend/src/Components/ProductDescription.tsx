@@ -1,34 +1,15 @@
-'use client';
-
-import { useState } from 'react';
-import { SlArrowUp, SlArrowDown } from 'react-icons/sl';
+import React from 'react';
 
 interface ProductDescriptionProps {
-  description: string;
+  title: string;
+  content: string;
 }
 
-const ProductDescription: React.FC<ProductDescriptionProps> = ({ description }) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleDescription = () => {
-    setIsOpen(!isOpen);
-  };
-
+const ProductDescription: React.FC<ProductDescriptionProps> = ({ title, content }) => {
   return (
-    <div className="mt-8 mb-2">
-      <div className="border-t border-b border-gray-100">
-        <div className="flex justify-between items-center cursor-pointer p-4" onClick={toggleDescription}>
-          <h1 className="font-bold text-base uppercase">Caracteristicas</h1>
-          <span className="text-xl">
-            {isOpen ? <SlArrowUp /> : <SlArrowDown />}
-          </span>
-        </div>
-        {isOpen && (
-          <div className="mt-4 text-gray-700 p-4">
-            {description}
-          </div>
-        )}
-      </div>
+    <div>
+      <h2 className="font-bold text-lg">{title}</h2>
+      <p>{content}</p>
     </div>
   );
 };

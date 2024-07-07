@@ -12,31 +12,50 @@ model artigos {
   name String
   descricao String @db.VarChar(500)
   preco Float
-  imagem String
   tipoartigoid String
   tipoartigos tipoartigos @relation(fields: [tipoartigoid], references: [id])
   stock stock[]
+  productimages productimages[]
+
 }
 
 model tipoartigos {
   id String @id @unique
   name String
   artigos artigos[]
+  sizesgrupoid String
+  sizesgrupo sizesgrupo @relation(fields: [sizesgrupoid], references: [id])
 }
 
 model stock{
   id String @id @unique
   artigoid String
   artigos artigos @relation(fields: [artigoid], references: [id])
-  sizeid String
-  sizes sizes @relation(fields: [sizeid], references: [id])
+  sizesid String
+  sizes sizes @relation(fields: [sizesid], references: [id])
+  
 }
 
 model sizes{
   id String @id @unique
   size String
   order Int 
+  sizesgrupoid String
+  sizesgrupo sizesgrupo @relation(fields: [sizesgrupoid], references: [id])
   stock stock[]
 }
 
+model sizesgrupo{
+  id String @id @unique
+  sizes sizes[]
+  name String
+  tipoartigos tipoartigos[]
+}
 
+model productimages{
+  id String @id @unique
+  artigoid String
+  artigos artigos @relation(fields: [artigoid], references: [id])
+  image String
+  ismain Boolean
+}

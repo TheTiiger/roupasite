@@ -9,7 +9,12 @@ interface Product {
   id: string;
   descricao: string;
   preco: number;
-  imagem: string;
+  productimages: ProductImages[];
+}
+
+interface ProductImages {
+  id: string;
+  image: string;
 }
 
 async function Page() {
@@ -40,7 +45,7 @@ async function Page() {
                 <Link href={`/product/${product.id}`} key={product.id} className="w-full">
                 <div className="w-56 flex flex-col bg-white border shadow-md hover:shadow-lg transition-shadow duration-300">
                   <div className='h-52'>
-                    <img src={IMAGES_SERVER + product.imagem} alt={product.name} className='object-cover w-full h-full' />
+                    <img src={IMAGES_SERVER + product.productimages[0].image} alt={product.name} className='object-cover w-full h-full' />
                   </div>
                     <div className='p-2'>
                       <h3 className="font-bold uppercase">{product.name}</h3>

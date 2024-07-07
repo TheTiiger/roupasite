@@ -1,26 +1,31 @@
 'use client';
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, ReactNode, useContext, useState, Dispatch, SetStateAction } from "react";
 
-const Context = createContext({});
+interface CartOptions {
+    showCart: boolean;
+    setShowCart: Dispatch<SetStateAction<boolean>>;
+}
 
-export const UserProvider = ({ children }) => {
-    const [user, setUserInfo] = useState({});
+const CartContext = createContext<CartOptions | {}>({});
+
+interface LayoutProps {
+    children: ReactNode;
+};
+
+export const CartProvider: React.FC<LayoutProps> = ({ children }) => {
+    const [showCart, setShowCart] = useState(false);
 
     return (
-        <UsersContext.Provider value={{
-            user,
-            getUserInfo,
-            makeLogout,
-            setUserCart,
-            userCart,
-            setUserInfo
+        <CartContext.Provider value={{
+            showCart,
+            setShowCart
         }}>
             { children }
-        </UsersContext.Provider>
+        </CartContext.Provider>
     );
 };
 
 export function useCart(){
-    const context = useContext(UsersContext);
+    const context = useContext(CartContext);
     return context;
 }

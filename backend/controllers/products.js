@@ -4,8 +4,6 @@ const prisma = new PrismaClient();
 export async function getProduct(req, res) {
     const {id} = req.params;
 
-    const allSizes = await prisma.sizes.findMany();
-
     const product = await prisma.artigos.findUnique({
         where: {
             id
@@ -15,13 +13,33 @@ export async function getProduct(req, res) {
             id: true,
             descricao: true,
             preco: true,
-            imagem: true,
-            stock: {
+            productimages: {
                 select: {
-                    sizes: true
+                    id: true,
+                    image: true
                 }
             },
-            tipoartigos: true
+            stock: {
+                select: {
+                    sizes: {
+                        select: {
+                            order: true,
+                            size: true
+                        }
+                    }
+                }
+            },
+            tipoartigos: {
+                select: {
+                    sizesgrupoid: true
+                }
+            }
+        }
+    });
+
+    const allSizes = await prisma.sizes.findMany({
+        where: {
+            sizesgrupoid: product.tipoartigos.sizesgrupoid
         }
     });
 
@@ -86,8 +104,16 @@ export async function getProducts(req, res) {
             id: true,
             descricao: true,
             preco: true,
-            imagem: true,
-            tipoartigos: true
+            productimages: {
+                select: {
+                    id: true,
+                    image: true,
+                    ismain: true
+                },
+                where: {
+                    ismain: true
+                }
+            }
         }
     });
     res.status(200).json(products);
