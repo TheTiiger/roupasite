@@ -10,7 +10,7 @@ datasource db {
 model artigos {
   id String @id @unique
   name String
-  descricao String
+  descricao String @db.VarChar(500)
   preco Float
   imagem String
   tipoartigoid String

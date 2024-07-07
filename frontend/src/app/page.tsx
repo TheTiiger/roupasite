@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import "../Components/CSS/Page.css";
 import { IMAGES_SERVER } from '@/env';
 import Link from 'next/link';
+import Banner from "@/Components/Banner";
 
 interface Product {
   name: string;
@@ -19,6 +20,7 @@ async function Page() {
 
   return (
     <div>
+      <Banner />
       {products.length === 0 ? (
         <div className="typing-indicator">
           <div className="typing-circle"></div>
@@ -30,19 +32,25 @@ async function Page() {
           <a href="#" className="btn-shine">Versão Beta</a>
         </div>
       ) : (
-        <div className="container-product">
-          {products.map((product: Product) => (
-            <div key={product.id}>
+        <div className='w-full mt-28 flex justify-center'>
+        <div className="w-1/2 flex flex-col">
+          <h2 className="font-bold text-2xl ">Make Your Own Rules</h2>
+          <div className="grid grid-cols-4 gap-4 mt-8">
+            {products.map((product: Product) => (
               <Link href={`/product/${product.id}`}>
-                  <div className="product">
-                    <img className='product-image' src={IMAGES_SERVER + product.imagem} alt={product.name} />
-                    <h3 className="product-name">{product.name}</h3>
-                    <p className = "product-description">  {product.descricao}</p>
-                    <p>{product.preco}$</p>
+                  <div key={product.id} className="flex flex-col w-full border shadow rounded">
+                    <div className='w-full h-36 flex'>
+                      <img src={IMAGES_SERVER + product.imagem} alt={product.name} className='object-cover' />
+                    </div>
+                    <div className='p-2'>
+                      <h3 className="">{product.name}</h3>
+                      <p>{product.preco}$</p>
+                    </div>
                   </div>
               </Link>
-            </div>
-          ))}
+            ))}
+          </div>
+        </div>
         </div>
       )}
     </div>

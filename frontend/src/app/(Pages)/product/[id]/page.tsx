@@ -59,7 +59,7 @@ export default async function ProductPage(props: any) {
           <div className='product-size'>
             {product.stock.map((size) => (
               <div className='product-uni'>
-                <button disabled={!size.isAvailable} className={!size.isAvailable ? "block" : ""}>{size.name}</button>
+                <button disabled={!size.isAvailable} className={!size.isAvailable ? "block" : "normalBtn"}>{size.name}</button>
               </div>
             ))}
           </div>
