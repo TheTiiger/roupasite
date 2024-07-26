@@ -24,6 +24,7 @@ CREATE TABLE `tipoartigos` (
 CREATE TABLE `stock` (
     `id` VARCHAR(191) NOT NULL,
     `artigoid` VARCHAR(191) NOT NULL,
+    `sizesid` VARCHAR(191) NOT NULL,
 
     UNIQUE INDEX `stock_id_key`(`id`),
     PRIMARY KEY (`id`)
@@ -68,6 +69,9 @@ ALTER TABLE `tipoartigos` ADD CONSTRAINT `tipoartigos_sizesgrupoid_fkey` FOREIGN
 
 -- AddForeignKey
 ALTER TABLE `stock` ADD CONSTRAINT `stock_artigoid_fkey` FOREIGN KEY (`artigoid`) REFERENCES `artigos`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `stock` ADD CONSTRAINT `stock_sizesid_fkey` FOREIGN KEY (`sizesid`) REFERENCES `sizes`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `sizes` ADD CONSTRAINT `sizes_sizesgrupoid_fkey` FOREIGN KEY (`sizesgrupoid`) REFERENCES `sizesgrupo`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;

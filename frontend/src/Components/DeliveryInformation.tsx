@@ -10,10 +10,12 @@ interface DeliveryInformationProps {
 const DeliveryInformation: React.FC<DeliveryInformationProps> = ({ content }) => {
   console.log('DeliveryInformation content:', content);
   return (
+    <div className="uppercase">
     <ProductDescription
       title="Entregas"
       content={content}
     />
+    </div>
   );
 };
 

@@ -14,8 +14,8 @@ export default function Cart(){
 
     return (
         <>
-        { showCart ? <div className="fixed bg-black bg-opacity-30 top-0 left-0 w-full h-full z-10 flex justify-end">
-            <div className="flex bg-white w-96 h-full p-4 shadow flex flex-col"> 
+        { showCart ? <div className="fixed bg-black bg-opacity-30 top-0 left-0 w-full h-full z-20 flex justify-end">
+            <div className="flex bg-white w-96 h-full p-4 shadow flex flex-col z-30"> 
                 <div className="flex justify-between">
                     <h1 className="text-xl font-bold text-zinc-800 uppercase">O Meu Carrinho</h1>
                     <button onClick={onClose} className="text-zinc-800 text-xl font-bold">X</button>

@@ -8,12 +8,14 @@ interface ReturnInformationProps {
 }
 
 const ReturnInformation: React.FC<ReturnInformationProps> = ({ content }) => {
-  console.log('ReturnInformation content:', content); // Log to check content
+  console.log('ReturnInformation content:', content);
   return (
+    <div className="uppercase">
     <ProductDescription
       title="Devoluções"
       content={content}
     />
+    </div>
   );
 };
 
